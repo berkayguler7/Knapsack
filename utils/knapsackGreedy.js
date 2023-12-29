@@ -1,5 +1,8 @@
 export default function knapsackGreedy(items, numItems, maxWeight) {
-    console.log(`knapGreedy: items: ${items} | numItems: ${numItems} | maxWeight: ${maxWeight}`)
+    let errorMessage = "";
+    if (items.length !== numItems) {
+        errorMessage += "Number of items does not match the number of items specified in the file header.\n";
+    }
     const sack = [];
     items.sort((a, b) => {
         return b[0] - a[0];
@@ -27,6 +30,5 @@ export default function knapsackGreedy(items, numItems, maxWeight) {
         if(value === undefined) value = 0;
         sackedItems += `${value} `;
     }
-    // let sackString = sack.join(" "); 
-    return { totalValue , /*sackString,*/ sackedItems};
+    return { totalValue , sackedItems, items, errorMessage};
 }
